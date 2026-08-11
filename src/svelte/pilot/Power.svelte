@@ -95,10 +95,8 @@
             <div class="la-flexrow clipped-bot-alt la-bckg-header-anti -widthfull">
             {#if power.uses}
                 <LimitedBondBox
-                    usesValue={power.uses.value}
-                    usesMax={power.uses.max}
-                    uuid={bondUUID}
-                    power={power.index}
+                    bond={system.bond}
+                    power={power}
                 />
             {/if}
             {#if power.frequency}

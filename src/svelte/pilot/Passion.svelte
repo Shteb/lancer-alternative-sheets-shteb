@@ -74,12 +74,54 @@
                 },
             });
     }
+
+    function editBond(event: Event)
+    {
+        event.stopPropagation();
+
+        const doc = fromUuidSync(system.bond.uuid) as any | null; //AdDpOl0s3D8U97HW
+        if (doc)
+        {
+            const sheet = doc.sheet;
+            if (sheet?.rendered)
+                sheet.maximize().then(() => sheet!.bringToTop())
+            else sheet?.render(true);
+        }
+    }
+
+    function removeBond(event: Event)
+    {
+        event.stopPropagation();
+
+        const doc = fromUuidSync(system.bond.uuid) as any | null;
+
+        if (doc)
+        {
+            // Eh... if they accidentally remove it then that's on them
+            doc.delete();
+        }
+    }
 </script>
 
 {#if system.bond}
 <div class="la-flexcol -widthfull -margin1-b -padding1-tb la-reveal-hover
         {qualityMode ? 'la-bg-scroll-alt' : 'la-bg-alt'}"
 >
+    <!-- Remove Bond -->
+    <GlyphButton
+        style={["mdi mdi-close-thick la-text-error -fontsize6 -lineheight8 -justifycenter -aligncenter -positionabsolute -left2",
+            advancedOptions ? '' : '-visibilityhidden',
+            qualityMode ? " la-prmy-primary -glow-prmy-hover " + getGlowColor() : ""]}
+
+        flowClass={FlowClass.None}
+        onClick={removeBond}
+
+        tooltipEnabled={tooltipEnabled}
+        tooltipTheme={theme}
+        tooltip={getLocalized("LA.delete.tooltip")}
+        logText={getLocalized("LA.delete.tooltip")}
+        logging={true}
+    />
     <!-- Bond Name -->
     <span class="-fontsize6 -letterspacing1 -upper">
         {system.bond.name}
@@ -227,7 +269,7 @@
             <!-- Edit Bond Image -->
             <GlyphButton
                 style={["mdi mdi-image-edit la-text-secondary -fontsize7 la-flexrow -justifycenter -aligncenter",
-                    qualityMode ? "-glow-prmy la-prmy-primary -glow-prmy-hover " + getGlowColor() : ""]}
+                    qualityMode ? " la-prmy-primary -glow-prmy-hover " + getGlowColor() : ""]}
 
                 flowClass={FlowClass.None}
 
@@ -241,12 +283,11 @@
             />
             <!-- Edit Bond -->
             <GlyphButton
-                style={["mdi mdi-pencil la-text-secondary -fontsize6 -lineheight8 -justifycenter -aligncenter",
-                    qualityMode ? " -glow-prmy la-prmy-primary -glow-prmy-hover " + getGlowColor() : ""]}
+                style={["mdi mdi-file-document-edit la-text-secondary -fontsize6 -lineheight8 -justifycenter -aligncenter",
+                    qualityMode ? " la-prmy-primary -glow-prmy-hover " + getGlowColor() : ""]}
 
-                flowClass={FlowClass.ContextMenu}
-                uuid={system.bond.uuid}
-                path="itemTypes.bond"
+                flowClass={FlowClass.None}
+                onClick={editBond}
 
                 tooltipEnabled={tooltipEnabled}
                 tooltipTheme={theme}
@@ -263,7 +304,7 @@
             <GlyphButton
                 style={["la-text-secondary -fontsize7 la-flexrow -justifycenter -aligncenter",
                     questionAnswer ? "mdi mdi-list-box" : "mdi mdi-help-circle",
-                    qualityMode ? "-glow-prmy la-prmy-primary -glow-prmy-hover " + getGlowColor() : ""]}
+                    qualityMode ? " la-prmy-primary -glow-prmy-hover " + getGlowColor() : ""]}
 
                 flowClass={FlowClass.None}
 
@@ -278,7 +319,7 @@
             <!-- Refresh Powers -->
             <GlyphButton
                 style={["mdi mdi-refresh-circle la-text-secondary -fontsize7 -justifycenter",
-                    qualityMode ? "-glow-prmy la-prmy-primary -glow-prmy-hover " + getGlowColor() : ""]}
+                    qualityMode ? " la-prmy-primary -glow-prmy-hover " + getGlowColor() : ""]}
 
                 flowClass={FlowClass.BondPowerRefresh}
 

@@ -1,3 +1,10 @@
+# 1.5.7
+## Changes
+* Removed glow on editing bond buttons because I find it hard to look at and changed the edit bond icon to something more visually intuitive
+* Changed editing the bonds power to now simply bring up the bond item directly rather than the Lancer system context menu
+* Added button to remove bonds at the top left of bonds when the advanced toggle is enabled
+* Fixed counter interaction in bond powers
+
 # 1.5.6 - Developers! Developers! Developers!
 As a bit of an experiment, I am exposing some API stuff `to see if anyone other than myself bothers using it`
 

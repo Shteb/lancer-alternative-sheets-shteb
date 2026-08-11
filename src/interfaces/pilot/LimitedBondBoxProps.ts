@@ -1,7 +1,5 @@
 export interface LimitedBondBoxProps
 {
-    usesValue: number,
-    usesMax: number,
-    uuid: string,
-    power: number,
+    bond: any, // The actual bond Item
+    power: any, // Power nested item
 }
