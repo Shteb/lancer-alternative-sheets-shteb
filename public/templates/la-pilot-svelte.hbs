@@ -37,28 +37,28 @@
             {{!-- Tertiary Tabs (main) --}}
             <div class="la-flexrow">
                 <nav
-                    class="la-tabs-tertiary la-bckg-tabs clipped-alt"
+                    class="la-tabs-tertiary la-flexrow la-bckg-tabs clipped-alt"
                     data-group="tertiary"
                 >
-                    <button type="button"
+                    <a
                         class="la-tab clipped-bot-alt la-text-header -fontsize4 -padding1
                             {{la_getAdvancedStyle actor.uuid}}"
                         data-tab="custom"
                     >
                         {{localize "LA.tab.custom.label"}}
-                    </button>{{!-- Handlebars randomly adds whitespace here
-                --}}<button type="button"
+                    </a>{{!-- Handlebars randomly adds whitespace here
+                --}}<a
                         class="la-tab clipped-bot-alt la-text-header -fontsize4 -padding1"
                         data-tab="status"
                     >
                         {{localize "LA.tab.status.label"}}
-                    </button>{{!-- Handlebars randomly adds whitespace here
-                --}}<button type="button"
+                    </a>{{!-- Handlebars randomly adds whitespace here
+                --}}<a
                         class="la-tab clipped-bot-alt la-text-header -fontsize4 -padding1"
                         data-tab="loadout"
                     >
                         {{localize "LA.tab.loadout.label"}}
-                    </button>
+                    </a>
                 </nav>
             </div>
         </div>
@@ -76,18 +76,18 @@
                     style="z-index: 1;"
                 >
                 {{!-- If you add the type attribute here it will actually break when inputs are submitted --}}
-                    <button
+                    <a
                         class="la-tab clipped-bot la-text-header -fontsizemedium -padding0 -padding1-lr"
                         data-tab="statistics"
                     >
                         {{localize "LA.tab.statistics.label"}}
-                    </button>
-                    <button
+                    </a>
+                    <a
                         class="la-tab clipped-bot la-text-header -fontsizemedium -padding0 -padding1-lr"
                         data-tab="activity"
                     >
                         {{localize "LA.tab.activity.label"}}
-                    </button>
+                    </a>
                 </nav>
             </div>
             <div 
@@ -163,18 +163,18 @@
                         data-group="quaternary"
                         style="z-index: 1;"
                     >
-                        <button type="button"
+                        <a
                             class="la-tab clipped-top la-text-header -fontsizemedium -padding0 -padding1-lr"
                             data-tab="dossier"
                         >
                             {{localize "LA.tab.dossier.label"}}
-                        </button>
-                        <button type="button"
+                        </a>
+                        <a
                             class="la-tab clipped-top la-text-header -fontsizemedium -padding0 -padding1-lr"
                             data-tab="mechs"
                         >
                             {{localize "LA.tab.mechs.label"}}
-                        </button>
+                        </a>
                     </nav>
                     <div class="-margin7-t">
                         <div 
@@ -206,24 +206,24 @@
                         data-group="primary"
                         style="z-index: 1;"
                     >
-                        <button type="button"
+                        <a
                             class="la-tab clipped-top la-text-header -fontsizemedium -padding0 -padding1-lr"
                             data-tab="abilities"
                         >
                             {{localize "LA.tab.abilities.label"}}
-                        </button>
-                        <button type="button"
+                        </a>
+                        <a
                             class="la-tab clipped-top la-text-header -fontsizemedium -padding0 -padding1-lr"
                             data-tab="bonds"
                         >
                             {{localize "LA.tab.bonds.label"}}
-                        </button>
-                        <button type="button"
+                        </a>
+                        <a
                             class="la-tab clipped-top la-text-header -fontsizemedium -padding0 -padding1-lr"
                             data-tab="equipment"
                         >
                             {{localize "LA.tab.equipment.label"}}
-                        </button>
+                        </a>
                     </nav>
                     {{!-- data-group cannot just simply declared on this div in a nested scenario, 
                         the system just assumes wrongly and doesn't set the active state properly --}}
