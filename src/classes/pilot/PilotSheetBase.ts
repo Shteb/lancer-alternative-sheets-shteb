@@ -160,6 +160,23 @@ export class PilotSheetBase
                 }
             }
 
+            // Reorder an already-owned skill/license/reserve instead of letting Lancer re-process it
+            // as a fresh drop. LancerPilotSheet never sorts (its own _onSortItem call is commented
+            // out), and its unguarded is_skill() branch resets rank to 1 on any drop.
+            // @ts-expect-error overriding function in LancerPilotSheet
+            override async onRootDrop(drop: any, event: any, dest: any): Promise<void>
+            {
+                if (this.isEditable && drop.type === "Item" && drop.document.parent === this.actor &&
+                    (drop.document.is_skill() || drop.document.is_license() || drop.document.is_reserve()))
+                {
+                    this._onSortItem(event, drop.document.toObject());
+                    return;
+                }
+
+                // @ts-expect-error overriding function in LancerPilotSheet
+                return super.onRootDrop(drop, event, dest);
+            }
+
             override async _replaceHTML(element: JQuery<HTMLElement>, html: JQuery<HTMLElement>): Promise<void>
             {
                 super._replaceHTML(element, html);
@@ -167,7 +184,7 @@ export class PilotSheetBase
 
                 this.mountComponents(html, dataMap[this.actor.uuid!]);
 
-                // Saving and restoring scroll positions calls before rerender, so 
+                // Saving and restoring scroll positions calls before rerender, so
                 // restore the scroll positions after the rerender
                 this._restoreScrollPositions(html);
             }
