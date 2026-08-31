@@ -183,7 +183,7 @@ export class PilotSheetBase
 
                 this.mountComponents(html, dataMap[this.actor.uuid!]);
 
-                // Saving and restoring scroll positions calls before rerender, so
+                // Saving and restoring scroll positions calls before rerender, so 
                 // restore the scroll positions after the rerender
                 this._restoreScrollPositions(html);
             }
