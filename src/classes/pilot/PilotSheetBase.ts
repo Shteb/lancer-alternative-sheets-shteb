@@ -161,8 +161,7 @@ export class PilotSheetBase
             }
 
             // Reorder an already-owned skill/license/reserve instead of letting Lancer re-process it
-            // as a fresh drop. LancerPilotSheet never sorts (its own _onSortItem call is commented
-            // out), and its unguarded is_skill() branch resets rank to 1 on any drop.
+            // as a fresh drop. Ensures only Triggers, Licenses and Reserves are caught.
             // @ts-expect-error overriding function in LancerPilotSheet
             override async onRootDrop(drop: any, event: any, dest: any): Promise<void>
             {
